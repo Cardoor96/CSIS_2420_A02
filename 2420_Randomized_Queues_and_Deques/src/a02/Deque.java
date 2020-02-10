@@ -68,6 +68,10 @@ public class Deque<Item> implements Iterable<Item> {
 
 	public Item removeFirst() // delete and return the item at the front
 	{
+		Node<Item> oldHead = head;
+		Item oldHeadItem = head.item;
+				
+				
 		return null;
 	}
 
