@@ -6,59 +6,55 @@ public class Deque<Item> implements Iterable<Item> {
 	private Node<Item> head;
 	private Node<Item> tail;
 	private int n;
-	
-	private class Node<Item>{
+
+	private class Node<Item> {
 		private Node<Item> next;
 		private Node<Item> prev;
 		private Item item;
 	}
-	
-	public Deque() // construct an empty deque
-	{
+
+	// construct an empty deque
+	public Deque() {
 		head = null;
 		tail = null;
 		n = 0;
 	}
 
-	public boolean isEmpty() // is the deque empty?
-	{
+	// is the deque empty?
+	public boolean isEmpty() {
 		return head == null;
 	}
 
-	public int size() // return the number of items on the deque
-	{
+	// return the number of items on the deque
+	public int size() {
 		return n;
 	}
 
-	public void addFirst(Item item) // insert the item at the front
-	{
+	// insert the item at the front
+	public void addFirst(Item item) {
 		Node<Item> newNode = new Node<Item>();
 		newNode.item = item;
-		
-		if(size() == 0)
-		{
+
+		if (size() == 0) {
 			head = newNode;
 			tail = head;
-		}else
-		{
-			head.prev = newNode; //node before current head == new head
-			newNode.next = head; //changes old head to next node
+		} else {
+			head.prev = newNode; // node before current head == new head
+			newNode.next = head; // changes old head to next node
 			head = newNode; // new node becomes front
 		}
 		n++;
 	}
 
-	public void addLast(Item item) // insert the item at the end
-	{
+	// insert the item at the end
+	public void addLast(Item item) {
 		Node<Item> newNode = new Node<Item>();
 		newNode.item = item;
-		
-		if(size() == 0)
-		{
+
+		if (size() == 0) {
 			head = newNode;
 			tail = newNode;
-		}else
-		{
+		} else {
 			tail.next = newNode; // node after tail becomes new node
 			newNode.prev = tail; // new node -1 = old tail node
 			tail = newNode; // tail is now set to new node
@@ -66,41 +62,38 @@ public class Deque<Item> implements Iterable<Item> {
 		n++;
 	}
 
-	public Item removeFirst() // delete and return the item at the front
-	{
-		Node<Item> oldHead = head;
+	// delete and return the item at the front
+	public Item removeFirst() {
 		Item oldHeadItem = head.item;
-				
-				
-		return null;
+		//TODO
+
+		return oldHeadItem;
 	}
 
-	public Item removeLast() // delete and return the item at the end
-	{
+	// delete and return the item at the end
+	public Item removeLast() {
 		Node<Item> oldTail = tail;
 		Item oldLastItem = tail.item;
-		
-		if(head == tail)
-		{
+
+		if (head == tail) {
 			head = null;
 			tail = null;
-		}else
-		{
+		} else {
 			tail = oldTail.prev;
 			tail.next = null;
 		}
-		
+
 		return oldLastItem;
 	}
 
-	public Iterator<Item> iterator() // return an iterator over items in order from front to end
-	{
-		return null;
+	// return an iterator over items in order from front to end
+	public Iterator<Item> iterator() {
+		return null; // TODO
 	}
 
-	public static void main(String[] args) // unit testing
-	{
-		
+	// unit testing
+	public static void main(String[] args) {
+
 	}
-	
-	}
+
+}
