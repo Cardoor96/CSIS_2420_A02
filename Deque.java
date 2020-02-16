@@ -41,7 +41,10 @@ public class Deque<Item> implements Iterable<Item> {
 		return n;
 	}
 
-	// insert the item at the front
+	/**
+	 * Inserts item at the front of the queue.
+	 * @param item to be added to the front of the queue
+	 */
 	public void addFirst(Item item) {
 		Node<Item> newNode = new Node<Item>();
 		newNode.item = item;
@@ -57,7 +60,10 @@ public class Deque<Item> implements Iterable<Item> {
 		n++;
 	}
 
-	// insert the item at the end
+	/**
+	 * Inserts item at the end of the queue.
+	 * @param item to be added to the end of the queue
+	 */
 	public void addLast(Item item) {
 		Node<Item> newNode = new Node<Item>();
 		newNode.item = item;
@@ -73,7 +79,10 @@ public class Deque<Item> implements Iterable<Item> {
 		n++;
 	}
 
-	// delete and return the item at the front
+	/**
+	 * Deletes and returns the first item of the queue.
+	 * @return the deleted item from the queue
+	 */
 	public Item removeFirst() {
 		Item oldHeadItem = head.item;
 		//TODO
@@ -81,7 +90,10 @@ public class Deque<Item> implements Iterable<Item> {
 		return oldHeadItem;
 	}
 
-	// delete and return the item at the end
+	/**
+	 * Deletes and returns the last item of the queue.
+	 * @return the deleted item from the queue
+	 */
 	public Item removeLast() {
 		Node<Item> oldTail = tail;
 		Item oldLastItem = tail.item;
@@ -97,7 +109,10 @@ public class Deque<Item> implements Iterable<Item> {
 		return oldLastItem;
 	}
 
-	// return an iterator over items in order from front to end
+	/**
+	 *  return an iterator over items in order from front to end.
+	 *  @return new iterator
+	 */
 	 public Iterator<Item> iterator(){
 		   return new dequeIterator();
 	   }
