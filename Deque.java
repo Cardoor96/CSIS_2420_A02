@@ -5,14 +5,6 @@ import java.util.NoSuchElementException;
 
 import edu.princeton.cs.algs4.StdOut;
 
-/**
- * Data type that holds generic Items. Implements Iterable interface, that allows insertion and removal
- * of items from the deque.
- * 
- * @author Carter Cluff & Robert Auer
- *
- * @param <Item> is a generic type.
- */
 public class Deque<Item> implements Iterable<Item> {
 	private Node<Item> head;
 	private Node<Item> tail;
@@ -25,7 +17,7 @@ public class Deque<Item> implements Iterable<Item> {
 	}
 
 	/**
-	 * Constructs and empty Deque.
+	 * Constructs an empty queue.
 	 */
 	public Deque() {
 		head = null;
@@ -34,30 +26,26 @@ public class Deque<Item> implements Iterable<Item> {
 	}
 
 	/**
-	 * Checks if the deque is empty.
-	 * @return true if empty, returns false if deque contains an item
+	 * Checks to see if the queue is empty.
+	 * @return True if queue is empty and otherwise returns false.
 	 */
 	public boolean isEmpty() {
 		return head == null;
 	}
 
 	/**
-	 * Checks the size of the deque.
-	 * @return integer value of deque size
+	 * Returns the current size of the queue.
+	 * @return the current size of the queue
 	 */
 	public int size() {
 		return n;
 	}
 
-	/**
-	 * Inserts an item at the front of the deque.
-	 * @param item
-	 */
+	// insert the item at the front
 	public void addFirst(Item item) {
-		if(item == null)
-			throw new java.lang.NullPointerException("New Item cannot be null.");
 		Node<Item> newNode = new Node<Item>();
 		newNode.item = item;
+
 		if (size() == 0) {
 			head = newNode;
 			tail = head;
@@ -69,15 +57,11 @@ public class Deque<Item> implements Iterable<Item> {
 		n++;
 	}
 
-	/**
-	 * Inserts an item at the end of the deque.
-	 * @param item
-	 */
+	// insert the item at the end
 	public void addLast(Item item) {
-		if(item == null)
-			throw new java.lang.NullPointerException("New Item cannot be null.");
 		Node<Item> newNode = new Node<Item>();
 		newNode.item = item;
+
 		if (size() == 0) {
 			head = newNode;
 			tail = newNode;
@@ -89,31 +73,16 @@ public class Deque<Item> implements Iterable<Item> {
 		n++;
 	}
 
-	/**
-	 * Deletes the item at the front of the deque.
-	 * @return returns the item that was at the front of the deque.
-	 */
+	// delete and return the item at the front
 	public Item removeFirst() {
-		if(isEmpty())
-			throw new java.util.NoSuchElementException("Cannot remove item from empty deque.");
 		Item oldHeadItem = head.item;
-		head = head.next;
-		if(head == tail)
-		{
-			head = null;
-			tail = null;
-		}
-		n--;
+		//TODO
+
 		return oldHeadItem;
 	}
 
-	/**
-	 * Deletes the last item in the deque.
-	 * @return returns the item that was at the end of the deque.
-	 */
+	// delete and return the item at the end
 	public Item removeLast() {
-		if(isEmpty())
-			throw new java.util.NoSuchElementException("Cannot remove item from empty deque.");
 		Node<Item> oldTail = tail;
 		Item oldLastItem = tail.item;
 
@@ -124,19 +93,17 @@ public class Deque<Item> implements Iterable<Item> {
 			tail = oldTail.prev;
 			tail.next = null;
 		}
-		n--;
+
 		return oldLastItem;
 	}
 
-	/**
-	 * Creates an iterator object for Deque class.
-	 */
+	// return an iterator over items in order from front to end
 	 public Iterator<Item> iterator(){
 		   return new dequeIterator();
 	   }
 	   
 	   private class dequeIterator implements Iterator<Item> {
-	   private Node<Item> current = head;
+	   private Node current = head;
 
 	@Override
 	public boolean hasNext() {
@@ -146,7 +113,7 @@ public class Deque<Item> implements Iterable<Item> {
 	@Override
 	public Item next() {
 		if (!hasNext()) {
-			throw new NoSuchElementException("No items to return.");
+			throw new NoSuchElementException();
 		}
 		
 		Item item = (Item) current.item;
@@ -163,7 +130,7 @@ public class Deque<Item> implements Iterable<Item> {
 	   @Override
 		public String toString() {
 			StringBuilder sb = new StringBuilder();
-			Node<Item> current = head;
+			Node current = head;
 			
 			while(current != null) {
 				sb.append(current.item).append(" ");
@@ -173,13 +140,13 @@ public class Deque<Item> implements Iterable<Item> {
 			return sb.toString();
 		}
 	   
-	/**
-	 * Test client for deque class.
-	 * @param args
-	 */
+	   
+	  
+	
+	
 	public static void main(String[] args) {
 		
-		Deque<String> test = new Deque<String>();
+		Deque<String> test = new Deque();
 		
 		test.addFirst("cat");
 		test.addFirst("dog");
@@ -197,15 +164,10 @@ public class Deque<Item> implements Iterable<Item> {
 		StdOut.println("Size: " + test.size());
 		StdOut.println("Is empty: " + test.isEmpty());
 		StdOut.println("Iterator Test");
-		Iterator<String> it = test.iterator();
+		Iterator it = test.iterator();
 		while(it.hasNext()){
 			StdOut.println(it.next());
 		}
-		
-		test.addFirst("cow");
-		test.addLast("mouse");
-		StdOut.println(test);
-		
 	}
 
 }
